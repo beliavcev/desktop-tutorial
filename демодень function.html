@@ -1,0 +1,102 @@
+﻿<html>
+
+<head>
+  <script>
+    function printArr(arr) {
+    console.log (arr);
+}
+
+    let N = Number(prompt("M="));//кол-о столбцов
+    if (isNaN(N)){
+               alert("не число")
+            throw("не число")
+            }
+    let M = 2 * N;//кол-во строк
+    let Arr = [];
+    let ar1 = 0;//переменные для суммы 
+    let ar2 = 0;
+    for (let i = 0; i < M; i++) {
+      Arr[i] = [];
+      for (let J = 0; J < N; J++) {
+        Arr[i][J] = Math.round(9 * Math.random());
+      }
+    }
+    printArr(Arr);
+    for (let i = 0; i < M; i++) {
+    }
+    for (let i = 0; i < N; i++) {
+      for (let J = 0; J < N; J++) {
+        ar1 = ar1 + Arr[i][J];
+      }
+    }
+    for (let i = N; i < M; i++) {
+      for (let J = 0; J < N; J++) {
+        ar2 = ar2 + Arr[i][J];
+      }
+    }
+    console.log (ar1,ar2)
+    if (ar1 >= ar2) {
+      console.log ("верхний больше")
+    } else if (ar1 < ar2) {
+      console.log ("нижний больше")
+    } else if (ar1 == ar2) {
+      console.log ("обе половины равны")
+    }
+
+    let arrB = [];
+    for (let i = 0; i < N; i++) {
+      arrB[i] = [];
+      for (let J = 0; J < N; J++) {
+        arrB[i][J] = Arr[i][J] * Arr[i + N][J];
+      }
+    }
+    printArr(arrB);
+    let arrFlat = []
+    for (let i = 0; i < N; i++) {
+      for (let J = 0; J < N; J++) {
+        arrFlat.push(arrB[i][J]);
+      }
+    }
+    //arrFlat.sort((a, b) => a - b);
+    //console.log(arrFlat);
+    for (let i = 1; i < arrFlat.length; i++) {
+      let x = arrFlat[i];
+      let m = 0;
+      let lt = 0;
+      let rt = i - 1;
+      while (lt <= rt) {
+        m = Math.floor((lt + rt) / 2)
+        if (x < arrFlat[m]) {
+          rt = m - 1;
+        } else {
+          lt = m + 1
+        }
+      }
+      for (let j = i - 1; j >= lt; j--) {
+        arrFlat[j + 1] = arrFlat[j]
+      }
+      arrFlat[lt] = x
+    }
+    printArr(arrFlat);
+    let arrC = []
+    for (let i = 0; i < N; i++) {
+      arrC[i] = [];
+      for (let J = 0; J < N; J++) {
+        arrC[i][J] = arrFlat[i * N + J];
+      }
+    }
+    printArr(arrC);
+
+  </script>
+</head>
+
+</html>
+</script>
+</head>
+
+<body>
+  <h1> домашняя работа с JavaScript</h1>
+  <p> за 9 июня 2022 года </p>
+</body>
+
+</html>
